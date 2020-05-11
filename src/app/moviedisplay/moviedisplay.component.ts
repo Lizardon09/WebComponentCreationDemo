@@ -13,22 +13,28 @@ import {MovieService} from '../services/movie.service';
   </head>
 
   <body>
-  <div class="container">
+
     <div class="row">
-      <div *ngFor="let movie of displaymovies" class="col-12 col-sm-6 col-md-6 col-lg-4 col-xl-4" style="padding-bottom: 25px;" (click)="selectMovie(movie)" [class.selected]="movie === outputmovie">
-        <div class="card moviecard" style="height: 100%;box-shadow: 2px 5px 5px 3px rgb(124, 123, 123);">
-            <img class="card-img-top" src="https://image.tmdb.org/t/p/original{{movie.backdrop_path}}" alt="" style="height: 200px;">
-            <div class="card-body">
-              <h4 class="card-title">{{movie.title}}</h4>
-             </div>
+      <div class="col-md-12">
+      <div class="row ml-4" style="align-content: center; justify-content: center;display: flex;">
+        <div *ngFor="let movie of displaymovies">
+          <div class="card mt-2 ml-4" style="max-width: 8rem;background-color: transparent;border-color: transparent;">
+            <img class="card-img-top" src="https://image.tmdb.org/t/p/original{{movie.poster_path}}" alt="" style="height: 200px; ">
+              <div class="card-body">
+                <h4 class="title" style="white-space: nowrap!important; width: 100px!important; overflow: hidden!important; text-overflow: ellipsis!important;  font-size: 13px;text-align: left;text-transform: uppercase;color: #000;margin-left: -20px;">{{movie.title}}</h4>
+                <h4 class="year" style=" font-size: 13px; color: gray; margin-left: -20px;">{{movie.release_date}}</h4>
+                <h4 class="title" style="font-size: 13px;text-align: left;text-transform: uppercase;color: #000;margin-left: -20px;">R 80</h4>
+              </div>
+              <button type="button" class="btn btn-success" (click)="selectMovie(movie);">Details</button>
+          </div>
+        </div>
         </div>
       </div>
     </div>
-  </div>
 
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
   </body>
 
