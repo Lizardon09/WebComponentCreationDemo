@@ -3,11 +3,31 @@
 <head>
   <meta charset="utf-8">
   <title>WebComponentDemo</title>
-  <base href="/">
+  <base href="">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <script src="./js/moviedisplay.js"></script>
 </head>
 <body>
-  <app-root></app-root>
+  
+  <button onclick="getTextBoxValue();">Insert Input</button>
+
+  <app-moviedisplay id="custommoviedisplay"></app-moviedisplay>
+  
+  <script>
+    function getTextBoxValue(){
+      document.getElementById("custommoviedisplay").searchedmovies = [
+		{"id":"24428","title":"The Avengers"},
+		{"id":"299536","title":"Avengers: Infinity War"}
+	  ];
+    }
+  </script>
+  
+  <script>
+    const moviedisplay = document.querySelector('app-moviedisplay');
+    moviedisplay.addEventListener('result',(event) =>{
+      console.log(`"Movie Display event" emitted: ${event.detail}`);
+    });
+	 
+  </script>
 </body>
 </html>

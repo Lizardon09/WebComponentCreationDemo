@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>WebComponentDemo</title>
+  <base href="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- <script src="element.js"></script> -->
+  <script src="../adder.js" type="text/script"></script>
+  <script src="../squareroot.js" type="text/script"></script>
+</head>
+<body>
+  <!-- <app-hello-button label="Click Me"></app-hello-button> -->
+  <input id=number1Box name="number1Box" type="text" placeholder="0">
+  <input id=number2Box name="number2Box" type="text" placeholder="0">
+
+  <app-adder id="test"></app-adder>
+
+  <button onclick="getTextBoxValue();">ADD</button>
+
+  <button onclick="getTextBoxValue2();">Insert</button>
+
+  <app-squareroot id="test2"></app-squareroot>
+
+  <!-- <app-adder number1 = 25 number2 = 20></app-adder> -->
+<!-- <script>
+  const button = document.querySelector('app-hello-button');
+  button.addEventListener('action', (event) => {
+      console.log('Action created: ${event.detail}');
+  });
+</script> -->
+  <script>
+    function getTextBoxValue(){
+      var textboxvalue1 = document.getElementById("number1Box").value;
+      var textboxvalue2 = document.getElementById("number2Box").value;
+      document.getElementById("test").number1 = textboxvalue1;
+      document.getElementById("test").number2 = textboxvalue2;
+
+      const cal = document.querySelector('app-adder');
+        cal.addEventListener('summationevent',(event) =>{
+        console.log(`summationevent emitted: ${event.detail}`);
+        document.getElementById("test2").inputvalue = event.detail;
+      });
+
+      const sqrt = document.querySelector('app-squareroot');
+        sqrt.addEventListener('result',(event) =>{
+        console.log(`Square root result emitted: ${event.detail}`);
+      });
+
+    }
+  </script>
+
+<script>
+  function getTextBoxValue2(){
+    var textboxvalue1 = document.getElementById("number1Box").value;
+    document.getElementById("test2").inputvalue = textboxvalue1;
+
+    const cal = document.querySelector('app-squareroot');
+      cal.addEventListener('result',(event) =>{
+      console.log(`Square root result emitted: ${event.detail}`);
+      document.getElementById("test").number1 = event.detail;
+      document.getElementById("test").number2 = 20;
+    });
+
+    const sqrt = document.querySelector('app-adder');
+      sqrt.addEventListener('summationevent',(event) =>{
+      console.log(`summationevent emitted: ${event.detail}`);
+    });
+
+  }
+</script>
+
+</body>
+</html>
