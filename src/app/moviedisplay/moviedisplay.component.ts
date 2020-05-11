@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation, Input, Output } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, Input, Output, ChangeDetectorRef } from '@angular/core';
 import { EventEmitter } from '@angular/core';
 import {Movie} from '../interfaces/Movie';
 import {MovieDetail} from '../interfaces/MovieDetail';
@@ -25,8 +25,6 @@ import {MovieService} from '../services/movie.service';
       </div>
     </div>
   </div>
-
-  <button (click)="show();">Show Movies</button>
 
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
@@ -55,15 +53,15 @@ export class MoviedisplayComponent implements OnInit {
   displaymovies : MovieDetail[] = [];
   outputmovie : Movie = {id:0,title:""};
 
-  constructor(private movieservice : MovieService) { }
+  constructor(private movieservice : MovieService, private ref: ChangeDetectorRef) { }
 
   ngOnInit(): void {
   }
 
   ngOnChanges(){
-
     this.getMovieDetails();
     console.log("Movies Processed");
+
   }
 
   getMovieDetails(){
@@ -75,13 +73,10 @@ export class MoviedisplayComponent implements OnInit {
         (data:any) =>
         {
           this.displaymovies.push(data);
+          this.ref.detectChanges();
         }
       );
     }
-  }
-
-  show(){
-    console.log("Searched Movies " + this.displaymovies.length);
   }
 
   selectMovie(selectedmovie : MovieDetail){
